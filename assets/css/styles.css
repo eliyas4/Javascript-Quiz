@@ -30,9 +30,10 @@ button:hover {
   background-color: #8570a5;
 }
 
-.choices button {
+/*.choices button {
   display: block;
 }
+*/
 
 input[type="text"] {
   font-size: 100%;
