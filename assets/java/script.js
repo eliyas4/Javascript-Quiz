@@ -5,21 +5,30 @@ let questionTitleEl = document.querySelector("#question-title")
 let starScreenEl = document.querySelector("#start-screen")
 let hiddenEl = document.querySelector(".hide")
 let questionSet = document.querySelector(".choices")
+let feedbackEl = document.querySelector("#feedback")
+//let feedbackHideEl = document.querySelector(".feedback")
 
-let questions = [{question: "String values must be enclosed within _______ when being assigned to variables.", answers:["commas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2}
-
-
-
-
+let questions = [
+    {question: "String values must be enclosed within _______ when being assigned to variables.", answers:["commas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
+    {question: "String values must be enclosed within _______ when being assigned to variables.", answers:["commas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
 ]
 console.log(questions[0].question)
 console.log(questions[0].answers)
 let currentQuestion = 0;
 let timerCount = 90;
 
+//The game starts when the start button is pressed
+startButtonEl.addEventListener("click",startGame);
+gameLogic();
+
+
+
+
+
 //This function is called when the start button is pressed
 function startGame() {
     startTimer()
+    
     renderQuestions()
 
 
@@ -33,6 +42,16 @@ function looseGame() {
 function winGame() {
 
 }
+
+
+
+
+
+
+
+
+
+
 
 // The startTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
@@ -60,46 +79,59 @@ function renderQuestions() {
 
     for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
 
-        let li = document.createElement("li");
+//       let li = document.createElement("li");
 
         let button = document.createElement("button");
-        li.setAttribute("data-index", i);
+        button.setAttribute("style", "width: 30%");
+ //       button.setAttribute("style", "align-items: left");
+        button.setAttribute("data-index", i);
 
 
 //       button.appendChild(ul)
 
-        ol.appendChild(li);
-        li.appendChild(button);
-        button.textContent = questions[currentQuestion].answers[i]
-
-
-//        let li = document.createElement("li"); 
-    //    li.textContent = questions[currentQuestion].answers[i]
-
-//        let button = document.createElement("button");
-//       button.textContent = questions[currentQuestion].answers[i]
-
-//        li.setAttribute("data-index", i);
-
+        ol.appendChild(button);
 //        li.appendChild(button);
-//        eachQuestion.appendChild(li)
-
+        button.textContent =((i + 1) + ". " + questions[currentQuestion].answers[i])
     }
+}
 
 
+function gameLogic() {
+    questionsEl.addEventListener("click", function(event) {
+        let element = event.target;
+        if (element.matches("button") === true) {
+            let index = element.getAttribute("data-index");
+//           console.log(index)
+            feedbackEl.classList.remove("hide")
+            if (index == questions[currentQuestion].correctAnswer) {
+//                console.log("DDD")
 
+                feedbackEl.textContent = "Correct Answer"
 
+            }
+            else {
+                
+                feedbackEl.textContent = "Incorrect Answer"
+                 timerCount -= 20; 
+
+            }
+            currentQuestion += 1    
+        }
+    });
+    
 }
 
 
 
 
+
+
+
+
+
+
+
+
 //These are all the event listeners 
-startButtonEl.addEventListener("click",startGame);
 
 
-//setInterval(function(){
-//    console.log("hello World")
-//},1000)
-
-// questionTitleEl.textContent = questions[0].question
