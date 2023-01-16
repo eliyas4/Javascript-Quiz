@@ -10,7 +10,7 @@ let feedbackEl = document.querySelector("#feedback")
 
 let questions = [
     {question: "String values must be enclosed within _______ when being assigned to variables.", answers:["commas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
-    {question: "String values must be enclosed within _______ when being assigned to variables.", answers:["commas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
+    {question: "String values must be enclosed within fhghffghdhfgfgh _______ when being assigned to variables.", answers:["commghcvgvhas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
 ]
 console.log(questions[0].question)
 console.log(questions[0].answers)
@@ -19,7 +19,7 @@ let timerCount = 90;
 
 //The game starts when the start button is pressed
 startButtonEl.addEventListener("click",startGame);
-gameLogic();
+//gameLogic();
 
 
 
@@ -27,9 +27,29 @@ gameLogic();
 
 //This function is called when the start button is pressed
 function startGame() {
+    console.log("cur", currentQuestion)
     startTimer()
-    
     renderQuestions()
+
+    console.log("cur", currentQuestion)
+//    renderQuestions()
+    for (let i = 0; i < questions.length; i++) {
+
+
+        
+    }
+
+
+
+
+
+
+//    renderQuestions()
+
+
+        
+
+    
 
 
     startButtonEl.disabled = true;
@@ -70,6 +90,7 @@ function renderQuestions() {
 
     //This renders the questions for the quiz
     questionsEl.setAttribute("data-state", "visible")
+
     questionTitleEl.textContent = questions[currentQuestion].question
     console.log(questions[currentQuestion].answers.length)
 
@@ -93,13 +114,33 @@ function renderQuestions() {
 //        li.appendChild(button);
         button.textContent =((i + 1) + ". " + questions[currentQuestion].answers[i])
     }
+    gameLogic();
+//    currentQuestion += 1
+//    console.log("cur", currentQuestion)
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
 
 
 function gameLogic() {
     questionsEl.addEventListener("click", function(event) {
         let element = event.target;
         if (element.matches("button") === true) {
+
             let index = element.getAttribute("data-index");
 //           console.log(index)
             feedbackEl.classList.remove("hide")
@@ -107,20 +148,30 @@ function gameLogic() {
 //                console.log("DDD")
 
                 feedbackEl.textContent = "Correct Answer"
+//                currentQuestion += 1
+
 
             }
             else {
                 
                 feedbackEl.textContent = "Incorrect Answer"
                  timerCount -= 20; 
+//                 currentQuestion += 1
+                 renderQuestions()
 
             }
-            currentQuestion += 1    
+//             
+//            renderQuestions()   
         }
-    });
-    
-}
 
+    });
+//    renderQuestions()
+//    gameLogic()
+
+
+
+}
+console.log("cur", currentQuestion)
 
 
 
