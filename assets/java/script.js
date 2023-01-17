@@ -6,7 +6,6 @@ let starScreenEl = document.querySelector("#start-screen")
 let hiddenEl = document.querySelector(".hide")
 let questionSet = document.querySelector(".choices")
 let feedbackEl = document.querySelector("#feedback")
-//let feedbackHideEl = document.querySelector(".feedback")
 
 let questions = [
     {question: "What are comets mostly made of?", answers:["Snow, ice, and dust", "Various metals", "Poisonous liquid", "Light"], correctAnswer: 0},
@@ -16,9 +15,8 @@ let questions = [
     {question: "Is Pluto a planet?", answers:["Yes", "No... but it should be!"], correctAnswer: 1},
 
 ]
-console.log(questions[0].question)
-console.log(questions[0].answers)
-let currentQuestion = 3;
+
+let currentQuestion = 0;
 let timerCount = 90;
 
 //The game starts when the start button is pressed
@@ -27,7 +25,8 @@ startButtonEl.addEventListener("click",startGame);
 //This function is called when the start button is pressed
 function startGame() {
     startTimer()
-    renderQuestions()
+    removeStartScreen()
+    generateQuiz()
     startButtonEl.disabled = true;
 }
 //This function is called if the timer runs out
@@ -51,20 +50,24 @@ function startTimer() {
 
 
 //This function renders the questions 
-function renderQuestions() {
+function removeStartScreen() {
     //This hides or removes anything that should not be shown once the start button is pressed
     starScreenEl.classList.add("hide")
-
     //This renders the questions for the quiz
     questionsEl.setAttribute("data-state", "visible")
 
-    questionTitleEl.textContent = questions[currentQuestion].question
-    console.log(questions[currentQuestion].answers.length)
 
-    let ol = document.createElement("ol");
+}
+
+
+
+function generateQuiz() {
+//    console.log("current question is", currentQuestion)
+
+
+    ol = document.createElement("ol");
     questionSet.appendChild(ol);
-
-
+    questionTitleEl.textContent = questions[currentQuestion].question
     for (let i = 0; i < questions[currentQuestion].answers.length; i++) {
 
         let button = document.createElement("button");
@@ -83,15 +86,23 @@ function renderQuestions() {
 
             if (index == questions[currentQuestion].correctAnswer) {
                 feedbackEl.textContent = "Correct Answer"
-                nextQuestion()
             }
             else {          
                 feedbackEl.textContent = "Incorrect Answer"
                 timerCount -= 20; 
-                nextQuestion()
             }
+            
+            
         }
+        setTimeout(resetQuestions, 1500);
+        setTimeout(generateQuiz, 3000)
+        
+        
+
     });
+    currentQuestion++
+    console.log("current question is", currentQuestion)
+
 }
 
 function resetQuestions() {
@@ -103,10 +114,18 @@ function resetQuestions() {
         questionTitleEl.removeChild
         (questionTitleEl.firstChild)
     }    
+    feedbackEl.classList.add("hide")
+//    generateQuiz()
 }
 
+
+
 function nextQuestion() {
+//    currentQuestion++
     resetQuestions()
-//    renderQuestions()   
+    generateQuiz()
 }
+
+
+
 
