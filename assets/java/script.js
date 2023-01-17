@@ -9,12 +9,16 @@ let feedbackEl = document.querySelector("#feedback")
 //let feedbackHideEl = document.querySelector(".feedback")
 
 let questions = [
-    {question: "String values must be enclosed within _______ when being assigned to variables.", answers:["commas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
-    {question: "String values must be enclosed within fhghffghdhfgfgh _______ when being assigned to variables.", answers:["commghcvgvhas", "curly brackets", "quotes", "parenthesis"], correctAnswer: 2},
+    {question: "What are comets mostly made of?", answers:["Snow, ice, and dust", "Various metals", "Poisonous liquid", "Light"], correctAnswer: 0},
+    {question: "Which planet has rings around it?", answers:["Earth", "Jupiter", "Saturn", "Uranus"], correctAnswer: 2},
+    {question: "How much money does a NASA space suit cost?", answers:["$10,000", "$5,000", "$1 Million", "12 Million"], correctAnswer: 3},
+    {question: "The surface of planet 55 cancri e primarily consists of what substance?", answers:["Rubber", "Water", "Diamond", "Lava"], correctAnswer: 2},
+    {question: "Is Pluto a planet?", answers:["Yes", "No... but it should be!"], correctAnswer: 1},
+
 ]
 console.log(questions[0].question)
 console.log(questions[0].answers)
-let currentQuestion = 0;
+let currentQuestion = 4;
 let timerCount = 90;
 
 //The game starts when the start button is pressed
@@ -29,15 +33,16 @@ startButtonEl.addEventListener("click",startGame);
 function startGame() {
     console.log("cur", currentQuestion)
     startTimer()
+
     renderQuestions()
+//    return
+//   renderQuestions()
+        
+
 
     console.log("cur", currentQuestion)
 //    renderQuestions()
-    for (let i = 0; i < questions.length; i++) {
 
-
-        
-    }
 
 
 
@@ -114,27 +119,89 @@ function renderQuestions() {
 //        li.appendChild(button);
         button.textContent =((i + 1) + ". " + questions[currentQuestion].answers[i])
     }
-    gameLogic();
+//    gameLogic();
 //    currentQuestion += 1
 //    console.log("cur", currentQuestion)
 
+    questionsEl.addEventListener("click", function(event) {
+        let element = event.target;
+        if (element.matches("button") === true) {
+
+            let index = element.getAttribute("data-index");
+    //           console.log(index)
+            feedbackEl.classList.remove("hide")
+            if (index == questions[currentQuestion].correctAnswer) {
+    //                console.log("DDD")
+
+                feedbackEl.textContent = "Correct Answer"
+
+                
+//                currentQuestion += 1
+                resetState()
+
+                console.log("ghbj" , currentQuestion)
+//                renderQuestions()
 
 
 
 
+            }
+            else {
+                
+                feedbackEl.textContent = "Incorrect Answer"
+                timerCount -= 20; 
+
+
+
+                
+//                currentQuestion += 1
+                resetState()
+
+
+                console.log("ghbj" , currentQuestion)
+//                renderQuestions()
+
+
+                
 
 
 
 
+            }
+    //             
+    //   
+        
+        }
+
+//    currentQuestion += 1
+    });
+    //    renderQuestions()
+    //    gameLogic()
 
 
 }
 
+function resetState() {
+    while (questionSet.firstChild) {
+        questionSet.removeChild
+        (questionSet.firstChild)
+    }
+    while (questionTitleEl.firstChild) {
+        questionTitleEl.removeChild
+        (questionTitleEl.firstChild)
+    }
+
+//    feedbackEl.classList.add("hide")
+        
+//    renderQuestions()   
+    
+
+    
+}
 
 
 
-
-
+/*
 
 function gameLogic() {
     questionsEl.addEventListener("click", function(event) {
@@ -177,7 +244,7 @@ console.log("cur", currentQuestion)
 
 
 
-
+*/
 
 
 
