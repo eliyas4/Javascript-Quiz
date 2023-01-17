@@ -33,8 +33,10 @@ startButtonEl.addEventListener("click",startGame);
 function startGame() {
     console.log("cur", currentQuestion)
     startTimer()
-
     renderQuestions()
+
+    
+
 //    return
 //   renderQuestions()
         
@@ -170,10 +172,10 @@ function renderQuestions() {
             }
     //             
     //   
-        
+            
         }
 
-//    currentQuestion += 1
+//      renderQuestions()  
     });
     //    renderQuestions()
     //    gameLogic()
