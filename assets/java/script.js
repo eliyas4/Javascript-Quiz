@@ -86,24 +86,22 @@ function generateQuiz() {
 
             if (index == questions[currentQuestion].correctAnswer) {
                 feedbackEl.textContent = "Correct Answer"
+                setTimeout(resetQuestions, 1500);
             }
             else {          
                 feedbackEl.textContent = "Incorrect Answer"
                 timerCount -= 20; 
-            }
-            
-            
+                setTimeout(resetQuestions, 1500);
+            }    
         }
-        setTimeout(resetQuestions, 1500);
-        setTimeout(generateQuiz, 3000)
-        
-        
-
     });
-    currentQuestion++
-    console.log("current question is", currentQuestion)
-
 }
+
+//setTimeout(resetQuestions, 1500);
+//setTimeout(generateQuiz, 3000)
+//currentQuestion++
+//console.log("current question is", currentQuestion)
+
 
 function resetQuestions() {
     while (questionSet.firstChild) {
@@ -115,15 +113,12 @@ function resetQuestions() {
         (questionTitleEl.firstChild)
     }    
     feedbackEl.classList.add("hide")
-//    generateQuiz()
 }
 
 
 
 function nextQuestion() {
-//    currentQuestion++
-    resetQuestions()
-    generateQuiz()
+
 }
 
 
