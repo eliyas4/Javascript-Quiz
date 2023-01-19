@@ -10,15 +10,16 @@ let looseScreenEl = document.querySelector("#loose-game")
 
 let questions = [
     {question: "What are comets mostly made of?", answers:["Snow, ice, and dust", "Various metals", "Poisonous liquid", "Light"], correctAnswer: 0},
-    {question: "Which planet has rings around it?", answers:["Earth", "Jupiter", "Saturn", "Uranus"], correctAnswer: 2},
-    {question: "How much money does a NASA space suit cost?", answers:["$10,000", "$5,000", "$1 Million", "12 Million"], correctAnswer: 3},
-    {question: "The surface of planet 55 cancri e primarily consists of what substance?", answers:["Rubber", "Water", "Diamond", "Lava"], correctAnswer: 2},
-    {question: "Is Pluto a planet?", answers:["Yes", "No... but it should be!"], correctAnswer: 1},
-    {question: "How long do footprints on the moon last?", answers:["100 years", "10,000 years", "1 million years", "100 million years"], correctAnswer: 3},
+//    {question: "Which planet has rings around it?", answers:["Earth", "Jupiter", "Saturn", "Uranus"], correctAnswer: 2},
+//    {question: "How much money does a NASA space suit cost?", answers:["$10,000", "$5,000", "$1 Million", "12 Million"], correctAnswer: 3},
+//    {question: "The surface of planet 55 cancri e primarily consists of what substance?", answers:["Rubber", "Water", "Diamond", "Lava"], correctAnswer: 2},
+//    {question: "Is Pluto a planet?", answers:["Yes", "No... but it should be!"], correctAnswer: 1},
+//    {question: "How long do footprints on the moon last?", answers:["100 years", "10,000 years", "1 million years", "100 million years"], correctAnswer: 3},
 ]
 
 let currentQuestion = 0;
 let timerCount = 90;
+let highScores = []
 
 //The game starts when the start button is pressed
 startButtonEl.addEventListener("click",startGame);
@@ -28,7 +29,8 @@ function startGame() {
     startTimer();
     removeStartScreen();
     generateQuiz();
-    looseGame();
+//    looseGame();
+    winGame();
     
     startButtonEl.disabled = true;
 }
@@ -43,17 +45,17 @@ function looseGame() {
         looseScreenEl.classList.remove("hide")
         let restartButtonEl = document.querySelector("#restart")
         restartButtonEl.addEventListener("click", () => {
-
-            
-
         })
-
-
     }
     
 }
 //This function is called if all the questions are answered and the timer does not run out
 function winGame() {
+    if (timerCount >= 0 && currentQuestion >= questions.length) {
+        displayHighscore();
+        console.log("firing")
+        
+    }
 
 }
 
@@ -63,7 +65,8 @@ function startTimer() {
     timer = setInterval(function(){
         timerCount--;
         timerCountEl.textContent = timerCount;
-        looseGame()
+        looseGame();
+        winGame();
 
     }, 1000);
     
