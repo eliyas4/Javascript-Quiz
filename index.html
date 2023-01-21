@@ -10,10 +10,7 @@
   </head>
 
   <body>
-    <div class="scores"><a href="highscores.html">View Highscores</a></div>
-
     <div class="timer">Time: <span id="time">0</span></div>
-
     <div class="wrapper">
       <div id="start-screen" class="start">
         <h1>The Super Solar System Quiz!✨💫🌑☄️</h1>
@@ -28,13 +25,7 @@
       <div class="questions" class="hide">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices"></div>
-
-
-
-
-        
       </div>
-
 
       <div id="loose-game" class="hide">
         <h1>You Loose! HA HA HA</h1>
@@ -56,6 +47,12 @@
       </div>
 
       <div id="feedback" class="feedback hide"></div>
+    </div>
+
+    <div id="win-screen" class="wrapper hide">
+      <h1>Highscores</h1>
+      <ol id="highscores"></ol>
+      <a href="index.html"><button>Go Back</button></a>
     </div>
 
     <script src="./assets/java/script.js"></script>
